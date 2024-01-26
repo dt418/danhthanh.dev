@@ -62,7 +62,10 @@ export default async function HeaderInfo() {
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem>
-                  <LogoutLink className="inline-flex gap-2">
+                  <LogoutLink
+                    className="inline-flex gap-2"
+                    postLogoutRedirectURL="/"
+                  >
                     <LogOutIcon size={20} /> Log out
                   </LogoutLink>
                   <DropdownMenuShortcut>⌘L</DropdownMenuShortcut>
@@ -73,10 +76,10 @@ export default async function HeaderInfo() {
         </Fragment>
       ) : (
         <Fragment>
-          <LoginLink>
+          <LoginLink postLoginRedirectURL="/">
             <Button>Login</Button>
           </LoginLink>
-          <RegisterLink>
+          <RegisterLink postLoginRedirectURL="/">
             <Button variant="secondary">Sign up</Button>
           </RegisterLink>
         </Fragment>
