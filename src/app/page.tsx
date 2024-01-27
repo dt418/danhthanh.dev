@@ -4,7 +4,7 @@ import { api } from "@/trpc/server";
 
 export default async function Home() {
   return (
-    <main className="flex min-h-screen">
+    <main className="flex flex-1">
       <div className="container">
         <CrudShowcase />
       </div>

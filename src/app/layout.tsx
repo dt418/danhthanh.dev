@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import { Fragment } from "react";
 
 import { Inter as FontSans } from "next/font/google";
 
@@ -6,7 +7,7 @@ import { TRPCReactProvider } from "@/trpc/react";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "./_components/partials/header";
-import { Fragment } from "react";
+import Footer from "./_components/partials/footer";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -28,20 +29,16 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "flex min-h-screen flex-col bg-background font-sans antialiased",
           fontSans.variable,
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TRPCReactProvider>
             <Fragment>
               <Header />
               {children}
+              <Footer />
             </Fragment>
           </TRPCReactProvider>
         </ThemeProvider>

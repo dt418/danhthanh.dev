@@ -1,13 +1,6 @@
 import React, { Fragment } from "react";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import {
-  LoginLink,
-  LogoutLink,
-  RegisterLink,
-  getKindeServerSession,
-} from "@kinde-oss/kinde-auth-nextjs/server";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -18,30 +11,31 @@ import {
   DropdownMenuItem,
   DropdownMenuShortcut,
 } from "@/components/ui/dropdown-menu";
-import { LogOutIcon } from "lucide-react";
+import { getServerAuthSession } from "@/server/auth";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default async function HeaderInfo() {
-  const { isAuthenticated, getUser } = getKindeServerSession();
-  const isLogin: boolean = await isAuthenticated();
-  const userInfo = await getUser();
+  const session = await getServerAuthSession();
   return (
     <div className="flex flex-row gap-2">
       <ThemeSwitcher />
-      {isLogin ? (
+      {session?.user ? (
         <Fragment>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Avatar className="cursor-pointer">
-                <AvatarImage src={String(userInfo?.picture)} />
+                <AvatarImage src={String(session.user.image)} />
                 <AvatarFallback>
-                  {userInfo?.given_name?.at(0) ?? "DT"}
+                  {session.user.name?.at(0) ?? "DT"}
                 </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel>{userInfo?.email}</DropdownMenuLabel>
+              <DropdownMenuLabel>{session.user.email}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
+                <DropdownMenuItem>{session.user.name}</DropdownMenuItem>
                 <DropdownMenuItem>
                   Profile
                   <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
@@ -62,12 +56,7 @@ export default async function HeaderInfo() {
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem>
-                  <LogoutLink
-                    className="inline-flex gap-2"
-                    postLogoutRedirectURL="/"
-                  >
-                    <LogOutIcon size={20} /> Log out
-                  </LogoutLink>
+                  <Link href={"/api/auth/signout"}>Log out</Link>
                   <DropdownMenuShortcut>⌘L</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
@@ -76,12 +65,9 @@ export default async function HeaderInfo() {
         </Fragment>
       ) : (
         <Fragment>
-          <LoginLink postLoginRedirectURL="/">
-            <Button>Login</Button>
-          </LoginLink>
-          <RegisterLink postLoginRedirectURL="/">
-            <Button variant="secondary">Sign up</Button>
-          </RegisterLink>
+          <Button asChild>
+            <Link href={"/api/auth/signin"}>Log in</Link>
+          </Button>
         </Fragment>
       )}
     </div>

@@ -10,9 +10,9 @@ datasource db {
     // Further reading:
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
-    provider     = "mysql"
-    url          = env("DATABASE_URL")
-    relationMode = "prisma"
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+    // relationMode = "prisma"
 }
 
 model Post {
