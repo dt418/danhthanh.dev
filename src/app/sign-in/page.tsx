@@ -120,14 +120,38 @@ export default function SignIn() {
             <rect x="427.49994" y="107.5" width="2" height="304" fill="#ccc" />
           </svg>
         </div>
-        <div className="flex flex-1 flex-col justify-center gap-4 text-center md:h-[calc(100vh-120px)]">
-          <Input name="email" />
-          <Button>Sign in with email</Button>
-          <Label className="uppercase">OR LOGIN WITH</Label>
-          <div className="grid grid-cols-1 gap-2 md:grid-cols-3 md:gap-4">
+        <div className="flex flex-1 flex-col justify-center gap-4 md:h-[calc(100vh-120px)]">
+          <div className="space-y-2 text-center">
+            <h1 className="text-3xl font-bold">Login</h1>
+            <p className="text-gray-500 dark:text-gray-400">
+              Enter your username and password to login to your account
+            </p>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              name="email"
+              placeholder="Enter your email"
+              type="email"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="password">Password</Label>
+            <Input
+              name="password"
+              placeholder="Enter your password"
+              type="password"
+              required
+            />
+          </div>
+          <Button variant="default" type="submit" className="w-full space-y-2">
+            Sign in with email
+          </Button>
+          <Label className="text-center uppercase">OR LOGIN WITH</Label>
+          <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4">
             <Button variant="outline">Sign in with Google</Button>
             <Button variant="outline">Sign in with Facebook</Button>
-            <Button variant="outline">Sign in with Tiktok</Button>
           </div>
         </div>
       </div>
