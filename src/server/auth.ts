@@ -6,6 +6,7 @@ import {
 } from "next-auth";
 // import DiscordProvider from "next-auth/providers/discord";
 import Auth0Provider from "next-auth/providers/auth0";
+import GoogleProvider from "next-auth/providers/google";
 
 import { env } from "@/env";
 import { db } from "@/server/db";
@@ -49,14 +50,14 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   secret: env.NEXTAUTH_SECRET,
   providers: [
-    // DiscordProvider({
-    //   clientId: env.DISCORD_CLIENT_ID,
-    //   clientSecret: env.DISCORD_CLIENT_SECRET,
-    // }),
     Auth0Provider({
       clientId: env.AUTH0_CLIENT_ID,
       clientSecret: env.AUTH0_CLIENT_SECRET,
       issuer: env.AUTH0_ISSUER,
+    }),
+    GoogleProvider({
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
     }),
     /**
      * ...add more providers here.
