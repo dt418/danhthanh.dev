@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
-import { ThemeSwitcher } from "@/components/theme-switcher";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import React, { Fragment } from 'react'
+import { ThemeSwitcher } from '@/components/theme-switcher'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -10,13 +10,13 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuShortcut,
-} from "@/components/ui/dropdown-menu";
-import { getServerAuthSession } from "@/server/auth";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/dropdown-menu'
+import { getServerAuthSession } from '@/server/auth'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 export default async function HeaderInfo() {
-  const session = await getServerAuthSession();
+  const session = await getServerAuthSession()
   return (
     <div className="flex flex-row gap-2">
       <ThemeSwitcher />
@@ -27,7 +27,7 @@ export default async function HeaderInfo() {
               <Avatar className="cursor-pointer">
                 <AvatarImage src={String(session.user.image)} />
                 <AvatarFallback>
-                  {session.user.name?.at(0) ?? "DT"}
+                  {session.user.name?.at(0) ?? 'DT'}
                 </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
@@ -56,7 +56,7 @@ export default async function HeaderInfo() {
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem>
-                  <Link href={"/api/auth/signout"}>Log out</Link>
+                  <Link href="/api/auth/signout">Log out</Link>
                   <DropdownMenuShortcut>⌘L</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
@@ -66,10 +66,10 @@ export default async function HeaderInfo() {
       ) : (
         <Fragment>
           <Button asChild>
-            <Link href={"/api/auth/signin"}>Log in</Link>
+            <Link href="/api/auth/signin">Log in</Link>
           </Button>
         </Fragment>
       )}
     </div>
-  );
+  )
 }

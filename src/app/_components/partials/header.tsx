@@ -1,6 +1,6 @@
-import React from "react";
-import HeaderInfo from "../header-info";
-import HeaderMenu from "../header-menu";
+import React from 'react'
+import HeaderInfo from '../header-info'
+import HeaderMenu from '../header-menu'
 
 const Header = async () => {
   return (
@@ -10,7 +10,7 @@ const Header = async () => {
         <HeaderInfo />
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
