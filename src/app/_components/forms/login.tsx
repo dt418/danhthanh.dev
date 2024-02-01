@@ -27,6 +27,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import Link from 'next/link'
 
 const PASSWORD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/
@@ -173,6 +174,25 @@ export default function LoginForm() {
               Facebook
             </Button>
           </div>
+        </div>
+        <div className="space-y-4">
+          <Label className='text-sm'>
+            By clicking continue, you agree to our{' '}
+            <Link
+              href="/term-of-service"
+              className="underline-offset-2 transition hover:underline"
+            >
+              Terms of service
+            </Link>{' '}
+            and{' '}
+            <Link
+              href="/privacy-policy"
+              className="underline-offset-2 transition hover:underline"
+            >
+              Privacy policy
+            </Link>
+            .
+          </Label>
         </div>
       </CardContent>
     </Card>
