@@ -1,22 +1,22 @@
-import { CreatePost } from "@/app/_components/create-post";
-import { getServerAuthSession } from "@/server/auth";
-import { api } from "@/trpc/server";
+import { CreatePost } from '@/app/_components/create-post'
+import { getServerAuthSession } from '@/server/auth'
+import { api } from '@/trpc/server'
 
 export default async function Home() {
   return (
-    <main className="flex min-h-screen">
+    <main className="flex flex-1">
       <div className="container">
         <CrudShowcase />
       </div>
     </main>
-  );
+  )
 }
 
 async function CrudShowcase() {
-  const session = await getServerAuthSession();
-  if (!session?.user) return null;
+  const session = await getServerAuthSession()
+  if (!session?.user) return null
 
-  const latestPost = await api.post.getLatest.query();
+  const latestPost = await api.post.getLatest.query()
 
   return (
     <div className="w-full max-w-xs">
@@ -28,5 +28,5 @@ async function CrudShowcase() {
 
       <CreatePost />
     </div>
-  );
+  )
 }
