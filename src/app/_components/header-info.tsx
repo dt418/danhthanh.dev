@@ -18,7 +18,7 @@ import { Button } from '@/components/ui/button'
 export default async function HeaderInfo() {
   const session = await getServerAuthSession()
   return (
-    <div className="flex flex-row gap-2">
+    <div className="flex flex-col gap-4 md:flex-row">
       <ThemeSwitcher />
       {session?.user ? (
         <Fragment>
@@ -65,7 +65,7 @@ export default async function HeaderInfo() {
         </Fragment>
       ) : (
         <Fragment>
-          <Button asChild>
+          <Button asChild className="w-16">
             <Link href="/api/auth/signin">Log in</Link>
           </Button>
         </Fragment>

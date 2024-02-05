@@ -3,26 +3,18 @@
 import * as React from 'react'
 import Link from 'next/link'
 
-import { Button } from '@/components/ui/button'
-
 export default function HeaderMenu() {
   return (
     <nav>
-      <ul className="flex flex-row gap-4">
+      <ul className="flex flex-col gap-4 md:flex-row">
         <li>
-          <Button asChild variant={'link'}>
-            <Link href="/">Home</Link>
-          </Button>
+          <Link href="/">Home</Link>
         </li>
         <li>
-          <Button asChild variant={'link'}>
-            <Link href="/projects">Project</Link>
-          </Button>
+          <Link href="/projects">Project</Link>
         </li>
         <li>
-          <Button asChild variant={'link'}>
-            <Link href="/contact">Contact</Link>
-          </Button>
+          <Link href="/contact">Contact</Link>
         </li>
       </ul>
     </nav>

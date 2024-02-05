@@ -176,7 +176,7 @@ export default function LoginForm() {
           </div>
         </div>
         <div className="space-y-4">
-          <Label className='text-sm'>
+          <Label className="text-sm">
             By clicking continue, you agree to our{' '}
             <Link
               href="/term-of-service"
