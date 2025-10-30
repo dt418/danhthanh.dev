@@ -13,7 +13,7 @@ import dayjs from '@/utils/dayjs';
 function LastUpdate() {
   return (
     <a
-      href="https://github.com/enjidev/enji.dev"
+      href="https://github.com/dt418/danhthanh.dev"
       target="_blank"
       rel="noreferrer nofollow"
       className={clsx('hover:underline')}
@@ -118,19 +118,19 @@ function FooterDescription() {
       <ul className={clsx('-ml-2 flex gap-1')}>
         <li>
           <a
-            href="https://twitter.com/enjidev"
+            href="https://x.com/danhthanh418"
             target="_blank"
             rel="noreferrer nofollow"
             className={clsx('flex h-9 w-9 items-center justify-center')}
-            aria-label="My Twitter profile"
-            title="My Twitter profile"
+            aria-label="My X profile"
+            title="My X profile"
           >
             <TwitterIcon className={clsx('h-5 w-5')} />
           </a>
         </li>
         <li>
           <a
-            href="https://github.com/enjidev"
+            href="https://github.com/dt418"
             target="_blank"
             rel="noreferrer nofollow"
             className={clsx('flex h-9 w-9 items-center justify-center')}
@@ -245,7 +245,7 @@ function Footer() {
           )}
         >
           <div className={clsx('font-semibold')}>
-            &copy; {dayjs().format('YYYY')}, Enji Kusnadi
+            &copy; {dayjs().format('YYYY')}, Thanh Danh
           </div>
           <div className={clsx('text-slate-500', 'dark:text-slate-400')}>
             <LastUpdate />

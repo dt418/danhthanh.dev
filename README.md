@@ -14,7 +14,7 @@ A monorepo for my personal website and projects, built with Turborepo and pnpm.
 
 A personal website with a blog, project showcase, and work information.
 
-https://user-images.githubusercontent.com/95107212/210668021-fd49431f-85a3-4bd7-bf9e-09639cb38922.mp4
+<https://user-images.githubusercontent.com/95107212/210668021-fd49431f-85a3-4bd7-bf9e-09639cb38922.mp4>
 
 ### Tech Stack
 
@@ -29,25 +29,25 @@ To get started, I recommend [installing pnpm](https://pnpm.io/installation) sinc
 
 Begin by forking the repository and then cloning it to your local machine:
 
-```
+```bash
 git clone <your-fork>
 ```
 
 Navigate to the project's root directory:
 
-```
+```bash
 cd ./enji.dev
 ```
 
 Next, copy the development version of the `env` file:
 
-```
+```bash
 cp ./apps/enji.dev/env.example ./apps/enji.dev/env.local
 ```
 
 Now, you have the `env.local` file ready for configuration:
 
-```
+```text
 DATABASE_URL = your-database-connection-string
 SALT_IP_ADDRESS = super-secret
 ```
@@ -58,13 +58,13 @@ As for `SALT_IP_ADDRESS`, feel free to fill it with some of your secret words. I
 
 Once configuration is complete, still at the root of the project directory, install the required dependencies:
 
-```
+```bash
 pnpm install
 ```
 
 Finally, run the project:
 
-```
+```bash
 pnpm dev
 ```
 
