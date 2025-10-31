@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://www.enji.dev',
+  siteUrl: process.env.NEXT_PUBLIC_VERCEL_URL || 'https://danhthanh.dev',
   priority: 0.6,
   generateRobotsTxt: true,
   generateIndexSitemap: false,
