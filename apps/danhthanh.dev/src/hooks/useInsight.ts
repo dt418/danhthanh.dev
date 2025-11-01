@@ -1,4 +1,8 @@
-import { ContentType, ReactionType, ShareType } from '@prisma/client';
+import {
+  ContentType,
+  ReactionType,
+  ShareType,
+} from '../../generated/prisma/client';
 import merge from 'lodash/merge';
 import { useEffect, useRef } from 'react';
 import useSWR from 'swr';
@@ -53,13 +57,13 @@ export default function useInsight({
   });
   // #endregion
 
-  const { isLoading, data, mutate } = useSWR<TContentMetaDetail>(
-    `/api/content/${slug}`,
-    fetcher,
-    {
-      fallbackData: INITIAL_VALUE,
-    }
-  );
+  const {
+    isLoading,
+    data = INITIAL_VALUE,
+    mutate,
+  } = useSWR<TContentMetaDetail>(`/api/content/${slug}`, fetcher, {
+    fallbackData: INITIAL_VALUE,
+  });
 
   // post view count
   useEffect(() => {

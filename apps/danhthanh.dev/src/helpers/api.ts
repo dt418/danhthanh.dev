@@ -1,4 +1,8 @@
-import { ContentType, ReactionType, ShareType } from '@prisma/client';
+import {
+  ContentType,
+  ReactionType,
+  ShareType,
+} from '../../generated/prisma/client';
 import axios from 'axios';
 
 import { TApiResponse } from '@/types';
