@@ -11,5 +11,8 @@
     "**/.next": true,
     "**/.turbo": true,
     "**/node_modules": true
+  },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
   }
 }

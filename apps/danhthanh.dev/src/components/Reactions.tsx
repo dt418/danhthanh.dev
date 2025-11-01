@@ -1,4 +1,4 @@
-import { ContentType } from '../../generated/prisma/client';
+import type { ContentType } from '../../generated/prisma/client';
 import clsx from 'clsx';
 import { m, useAnimationControls } from 'framer-motion';
 import { useRouter } from 'next/router';
@@ -99,18 +99,27 @@ function Reactions({
 
   const {
     isLoading,
-    data: {
-      meta: {
-        views,
-        shares,
-        reactions,
-        reactionsDetail: { THINKING, CLAPPING, AMAZED },
-      },
-      metaUser: { reactionsDetail: user },
-    },
+    data: insightData,
     addShare,
     addReaction,
   } = useInsight({ slug, contentType, contentTitle, countView: withCountView });
+
+  // Safely read values from insightData — avoid nested destructuring which throws
+  // if `insightData` is ever `undefined` at runtime.
+  const views = insightData?.meta?.views ?? 0;
+  const shares = insightData?.meta?.shares ?? 0;
+  const reactions = insightData?.meta?.reactions ?? 0;
+  const reactionsDetail = insightData?.meta?.reactionsDetail ?? {
+    THINKING: 0,
+    CLAPPING: 0,
+    AMAZED: 0,
+  };
+  const { THINKING, CLAPPING, AMAZED } = reactionsDetail;
+  const user = insightData?.metaUser?.reactionsDetail ?? {
+    THINKING: 0,
+    CLAPPING: 0,
+    AMAZED: 0,
+  };
 
   const CLAPPING_QUOTA = MAX_REACTIONS_PER_SESSION - user.CLAPPING;
   const THINKING_QUOTA = MAX_REACTIONS_PER_SESSION - user.THINKING;
