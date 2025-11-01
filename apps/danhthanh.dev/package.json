@@ -12,7 +12,6 @@
     "lint:style": "prettier --check .",
     "analyze": "cross-env ANALYZE=true npm run build",
     "postbuild": "next-sitemap",
-    "check-types": "tsc --noEmit",
     "db:generate": "prisma generate --no-engine",
     "db:migrate": "prisma migrate",
     "db:deploy": "prisma migrate deploy",

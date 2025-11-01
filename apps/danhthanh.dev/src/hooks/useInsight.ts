@@ -1,14 +1,15 @@
-import {
-  ContentType,
-  ReactionType,
-  ShareType,
-} from '../../generated/prisma/client';
 import merge from 'lodash/merge';
 import { useEffect, useRef } from 'react';
 import useSWR from 'swr';
 
 import fetcher from '@/utils/fetcher';
 import { postReaction, postShare, postView } from '@/helpers/api';
+
+import {
+  ContentType,
+  ReactionType,
+  ShareType,
+} from '../../generated/prisma/client';
 
 import type { TContentMetaDetail } from '@/types';
 
@@ -72,8 +73,8 @@ export default function useInsight({
   // The API may return an error shape like { message: string } which is truthy
   // but does not contain the expected `meta`/`metaUser` fields. Guard against
   // that by validating the shape before using `data`.
-  const isContentMetaDetail = (v: unknown): v is TContentMetaDetail => {
-    return (
+  const isContentMetaDetail = (v: unknown): v is TContentMetaDetail =>
+    !!(
       v &&
       typeof v === 'object' &&
       'meta' in v &&
@@ -83,7 +84,6 @@ export default function useInsight({
       v.metaUser &&
       typeof v.metaUser === 'object'
     );
-  };
 
   // ensure we never read invalid data — always use a validated baseData
   const baseData: TContentMetaDetail = isContentMetaDetail(data)

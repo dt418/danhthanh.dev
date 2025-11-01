@@ -1,4 +1,3 @@
-import type { ContentType } from '../../generated/prisma/client';
 import clsx from 'clsx';
 import { m, useAnimationControls } from 'framer-motion';
 import { useRouter } from 'next/router';
@@ -13,6 +12,7 @@ import useScrollSpy from '@/hooks/useScrollSpy';
 
 import { MAX_REACTIONS_PER_SESSION } from '@/constants/app';
 
+import type { ContentType } from '../../generated/prisma/client';
 import type { PropsWithChildren } from 'react';
 
 interface CounterProps {

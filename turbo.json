@@ -23,9 +23,6 @@
     },
     "db:generate": {
       "cache": false
-    },
-    "check-types": {
-      "dependsOn": ["^check-types"]
     }
   }
 }
