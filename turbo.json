@@ -15,7 +15,7 @@
       "outputs": []
     },
     "dev": {
-      "dependsOn": ["check-types", "db:generate"],
+      "dependsOn": ["db:generate"],
       "cache": false
     },
     "clean": {
