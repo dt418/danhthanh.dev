@@ -42,6 +42,26 @@
           "title": "Categories",
           "name": "categories",
           "type": "categories"
+        },
+        {
+          "title": "caption",
+          "name": "caption",
+          "type": "string"
+        },
+        {
+          "title": "githubUrl",
+          "name": "githubUrl",
+          "type": "string"
+        },
+        {
+          "title": "npmUrl",
+          "name": "npmUrl",
+          "type": "string"
+        },
+        {
+          "title": "layout",
+          "name": "layout",
+          "type": "string"
         }
       ]
     }
