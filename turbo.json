@@ -8,14 +8,14 @@
   ],
   "tasks": {
     "build": {
-      "dependsOn": ["db:generate", "^build"],
+      "dependsOn": ["check-types", "db:generate", "^build"],
       "outputs": ["dist/**", ".next/**"]
     },
     "lint": {
       "outputs": []
     },
     "dev": {
-      "dependsOn": ["db:generate"],
+      "dependsOn": ["check-types", "db:generate"],
       "cache": false
     },
     "clean": {

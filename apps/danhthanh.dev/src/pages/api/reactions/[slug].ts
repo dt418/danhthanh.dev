@@ -1,4 +1,4 @@
-import { ContentType, ReactionType } from '@prisma/client';
+import { ContentType, ReactionType } from '../../../../generated/prisma/client';
 import { z } from 'zod';
 
 import { getSessionId } from '@/helpers/server';

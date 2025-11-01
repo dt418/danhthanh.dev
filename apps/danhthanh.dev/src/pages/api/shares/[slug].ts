@@ -1,4 +1,4 @@
-import { ContentType, ShareType } from '@prisma/client';
+import { ContentType, ShareType } from '../../../../generated/prisma/client';
 import { z } from 'zod';
 
 import { getSessionId } from '@/helpers/server';
