@@ -32,10 +32,30 @@
           "isModifiedDate": true,
           "dateFormat": "yyyy-MM-dd"
         },
+        // {
+        //   "title": "Author",
+        //   "name": "author",
+        //   "type": "fields",
+        //   "fields": [
+        //     {
+        //       "title": "name",
+        //       "name": "name",
+        //       "type": "string",
+        //       "default": "danhthanh418"
+        //     },
+        //     {
+        //       "title": "Avatar URL",
+        //       "name": "avatarUrl",
+        //       "type": "string",
+        //       "default": "https://github.com/dt418.png"
+        //     }
+        //   ]
+        // },
         {
           "title": "Content preview",
           "name": "preview",
-          "type": "image"
+          "type": "image",
+          "isPreviewImage": true
         },
         {
           "title": "Is in draft",
