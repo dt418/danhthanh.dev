@@ -50,7 +50,7 @@ export const formatLang = (lang: TPostFrontMatter['lang']) => {
     case 'en':
       return 'English';
     default:
-      return '';
+      return 'English';
   }
 };
 
