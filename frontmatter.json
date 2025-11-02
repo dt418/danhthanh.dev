@@ -21,7 +21,16 @@
           "name": "date",
           "type": "datetime",
           "default": "{{now}}",
-          "isPublishDate": true
+          "isPublishDate": true,
+          "dateFormat": "yyyy-MM-dd"
+        },
+        {
+          "title": "Last modified date",
+          "name": "lastmod",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isModifiedDate": true,
+          "dateFormat": "yyyy-MM-dd"
         },
         {
           "title": "Content preview",
@@ -44,17 +53,17 @@
           "type": "categories"
         },
         {
-          "title": "caption",
+          "title": "Caption",
           "name": "caption",
           "type": "string"
         },
         {
-          "title": "githubUrl",
+          "title": "Github URL",
           "name": "githubUrl",
           "type": "string"
         },
         {
-          "title": "npmUrl",
+          "title": "npm URL",
           "name": "npmUrl",
           "type": "string"
         },
@@ -62,6 +71,16 @@
           "title": "layout",
           "name": "layout",
           "type": "string"
+        },
+        {
+          "title": "lang",
+          "name": "lang",
+          "type": "string"
+        },
+        {
+          "title": "category",
+          "name": "category",
+          "type": "categories"
         }
       ]
     }
@@ -73,10 +92,6 @@
     {
       "path": "[[workspace]]/apps/danhthanh.dev/src/pages",
       "title": "pages"
-    },
-    {
-      "title": "pages",
-      "path": "[[workspace]]/apps/danhthanh.dev/src/pages"
     }
   ],
   "frontMatter.git.enabled": true
