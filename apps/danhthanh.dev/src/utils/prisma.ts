@@ -4,7 +4,6 @@ import { PrismaClient } from '../../generated/prisma/client';
 
 dotenv.config();
 
-
 interface Global {
   prisma?: PrismaClient;
 }

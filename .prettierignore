@@ -9,9 +9,9 @@ node_modules
 coverage
 
 # next.js
-.next/
-out/
-build
+**/.next/
+**/out/
+**/build
 .swc/
 
 # misc
