@@ -10,7 +10,7 @@
 
 A monorepo for my personal website and projects, built with Turborepo and pnpm.
 
-## 📘 [enji.dev](https://www.enji.dev)
+## 📘 [danhthanh.dev](https://www.danhthanh.dev)
 
 A personal website with a blog, project showcase, and work information.
 
