@@ -4,12 +4,8 @@ import jsonata from 'jsonata';
 import dayjs from '@/utils/dayjs';
 import { prisma } from '@/utils/prisma';
 
-import type {
-  ContentType,
-  ReactionType,
-  ShareType,
-} from '../../generated/prisma/client';
 import type { TContentActivity, TContentMeta, TReaction } from '@/types';
+import type { ContentType, ReactionType, ShareType } from '@prisma/client';
 
 export const getAllContentMeta = async (): Promise<
   Record<string, TContentMeta>

@@ -1,15 +1,10 @@
+import { ContentType, ReactionType, ShareType } from '@prisma/client';
 import merge from 'lodash/merge';
 import { useEffect, useRef } from 'react';
 import useSWR from 'swr';
 
 import fetcher from '@/utils/fetcher';
 import { postReaction, postShare, postView } from '@/helpers/api';
-
-import {
-  ContentType,
-  ReactionType,
-  ShareType,
-} from '../../generated/prisma/client';
 
 import type { TContentMetaDetail } from '@/types';
 

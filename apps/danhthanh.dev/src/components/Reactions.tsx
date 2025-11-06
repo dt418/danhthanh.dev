@@ -12,7 +12,7 @@ import useScrollSpy from '@/hooks/useScrollSpy';
 
 import { MAX_REACTIONS_PER_SESSION } from '@/constants/app';
 
-import type { ContentType } from '../../generated/prisma/client';
+import type { ContentType } from '@prisma/client';
 import type { PropsWithChildren } from 'react';
 
 interface CounterProps {
