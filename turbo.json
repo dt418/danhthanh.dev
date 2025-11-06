@@ -9,20 +9,27 @@
   "tasks": {
     "build": {
       "dependsOn": ["db:generate", "^build"],
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": ["dist/**", ".next/**"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"]
     },
     "lint": {
       "outputs": []
     },
     "dev": {
       "dependsOn": ["db:generate"],
-      "cache": false
+      "cache": false,
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "persistent": true
     },
     "clean": {
       "cache": false
     },
     "db:generate": {
       "cache": false
+    },
+    "db:push": {
+      "cache": false
     }
-  }
+  },
+  "globalDependencies": [".env"]
 }

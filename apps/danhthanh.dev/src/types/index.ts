@@ -1,8 +1,4 @@
-import type {
-  ContentType,
-  ReactionType,
-  ShareType,
-} from '../../generated/prisma/client';
+import type { ContentType, ReactionType, ShareType } from '@prisma/client';
 
 export type TApiResponse = {
   message: string;
