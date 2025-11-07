@@ -1,7 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
+import path from 'node:path';
 
-dotenv.config();
+dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
 interface Global {
   prisma?: PrismaClient;
