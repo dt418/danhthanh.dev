@@ -106,7 +106,7 @@
     }
   ],
   "frontMatter.framework.id": "next",
-  "frontMatter.content.publicFolder": "public",
+  "frontMatter.content.publicFolder": "[[workspace]]/apps/danhthanh.dev/public",
   "frontMatter.preview.host": "http://localhost:3000",
   "frontMatter.content.pageFolders": [
     {
