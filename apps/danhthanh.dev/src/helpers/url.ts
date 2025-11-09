@@ -3,9 +3,9 @@ export const getBaseUrl = () => {
     case 'production':
       return 'https://danhthanh.dev';
     case 'preview':
-      return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+      return `${process.env.NEXT_PUBLIC_VERCEL_URL}`;
     default:
-      return `http://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+      return `${process.env.NEXT_PUBLIC_VERCEL_URL}`;
   }
 };
 
