@@ -22,6 +22,7 @@ function getDefaultLayout(page: ReactElement): ReactNode {
   return <WithNavigationFooter>{page}</WithNavigationFooter>;
 }
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? 'G-XXXXXXXX';
 function App({ Component, pageProps, router }: AppPropsWithLayout) {
   let getLayout;
 
@@ -38,7 +39,7 @@ function App({ Component, pageProps, router }: AppPropsWithLayout) {
       <RootLayout>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         {getLayout(<Component {...pageProps} />)}
-        <GoogleAnalytics gaId="G-FB9QLDNKNN" />
+        <GoogleAnalytics gaId={GA_ID} />
       </RootLayout>
     </Provider>
   );
