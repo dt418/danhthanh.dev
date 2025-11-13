@@ -1,7 +1,9 @@
 import clsx from 'clsx';
-import { PropsWithChildren, useRef, useState } from 'react';
+import { PropsWithChildren } from 'react';
 
 import { ClipboardIcon } from '@/components/Icons';
+
+import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
 
 interface CodeFooterProps {
   lines?: number;
@@ -47,22 +49,7 @@ function Code({
   withFooter = true,
   children = null,
 }: PropsWithChildren<CodeProps>) {
-  const codeRef = useRef<HTMLPreElement>(null);
-  const [isCopied, setCopied] = useState<boolean>(false);
-
-  const copyToClipboard = async () => {
-    try {
-      const content = codeRef.current.textContent || '';
-      await navigator.clipboard.writeText(content);
-
-      if (!isCopied) {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1000);
-      }
-    } catch (err) {
-      setCopied(false);
-    }
-  };
+  const { codeRef, isCopied, copyToClipboard } = useCopyToClipboard();
 
   return (
     <div className={clsx('mdx-code')}>

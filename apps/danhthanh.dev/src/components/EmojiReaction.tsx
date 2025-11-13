@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -104,7 +104,8 @@ function EmojiReaction({
         className={clsx('relative cursor-pointer select-none', [
           disabled && 'cursor-not-allowed',
         ])}
-        whileTap={!disabled && 'tap'}
+        whileTap={!disabled ? emojiMotion.tap : undefined}
+        variants={emojiMotion}
         whileHover="hover"
         onHoverStart={() => {
           if (!disabled) {

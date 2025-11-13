@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { m, useAnimationControls } from 'framer-motion';
+import { m, useAnimationControls } from 'motion/react';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 

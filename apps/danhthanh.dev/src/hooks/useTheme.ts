@@ -1,3 +1,5 @@
+'use client';
+
 import { useTheme as useNextThemes } from 'next-themes';
 import { useEffect, useState } from 'react';
 

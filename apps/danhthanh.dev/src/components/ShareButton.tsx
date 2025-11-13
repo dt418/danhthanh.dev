@@ -1,7 +1,7 @@
 import { Menu } from '@headlessui/react';
 import { ShareType } from '@prisma/client';
 import clsx from 'clsx';
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import { forwardRef } from 'react';
 
 import {

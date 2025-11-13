@@ -1,10 +1,10 @@
 import clsx from 'clsx';
-import { m, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion, Variants } from 'motion/react';
 import Link from 'next/link';
 
 import { DocumentIcon } from '@/components/Icons';
 
-const animation = {
+const animation: Variants = {
   hide: {
     x: -16,
     opacity: 0,

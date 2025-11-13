@@ -1,6 +1,6 @@
 import { Dialog } from '@headlessui/react';
 import clsx from 'clsx';
-import { m } from 'framer-motion';
+import { m, Variants } from 'motion/react';
 import { useRef } from 'react';
 
 import ActionCenter from '@/components/ActionCenter';
@@ -11,7 +11,7 @@ import TipShortcuts from '@/components/TipShortcuts';
 
 import useGlobal from '@/hooks/useGlobal';
 
-const animation = {
+const animation: Variants = {
   hide: { opacity: 0 },
   show: { opacity: 1, transition: { duration: 0.18 } },
 };

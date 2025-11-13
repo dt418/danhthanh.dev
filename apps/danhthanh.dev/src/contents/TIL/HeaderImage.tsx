@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import { m } from 'framer-motion';
+import { m, Variants } from 'motion/react';
 
-const animation = {
+const animation: Variants = {
   hide: { pathLength: 0.3 },
   show: (i) => {
     const delay = 0.4 + i * 0.1;

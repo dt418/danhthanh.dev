@@ -1,4 +1,4 @@
-import { animate } from 'framer-motion';
+import { animate } from 'motion/react';
 import { useEffect, useRef } from 'react';
 
 interface CountUpProps {
@@ -7,20 +7,21 @@ interface CountUpProps {
 }
 
 function CountUp({ from, to }: CountUpProps) {
-  const nodeRef = useRef(null);
+  const nodeRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const node = nodeRef.current;
+    if (!node) return () => {}; // ✅ Always return a function
 
     const controls = animate(from, to, {
       duration: 1.4,
       ease: 'easeOut',
       onUpdate(value) {
-        node.textContent = value.toFixed(0);
+        node.textContent = Math.round(value).toString();
       },
     });
 
-    return () => controls.stop();
+    return () => controls.stop(); // ✅ Consistent return type
   }, [from, to]);
 
   return <span ref={nodeRef}>{to}</span>;

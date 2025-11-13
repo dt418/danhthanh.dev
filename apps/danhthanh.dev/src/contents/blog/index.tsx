@@ -22,9 +22,9 @@ type TPostPreview = TPostFrontMatter & {
 };
 
 function BlogContents({ posts }: BlogContentsProps) {
-  const { data } = useContentMeta();
+  const { data = {} } = useContentMeta();
 
-  let pinnedPost: TPostPreview;
+  let pinnedPost: TPostPreview | null = {} as TPostPreview;
   const postsPreview: Array<TPostPreview> = [];
 
   posts.forEach(({ slug, frontMatter }) => {

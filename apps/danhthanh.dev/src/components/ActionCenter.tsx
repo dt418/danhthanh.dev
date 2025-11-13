@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { m } from 'framer-motion';
+import { m, Variants } from 'motion/react';
 import { useTheme } from 'next-themes';
 
 import { DarkIcon, EyeIcon, EyeSlash, LightIcon } from '@/components/Icons';
@@ -8,7 +8,7 @@ import useFocusMode from '@/hooks/useFocusMode';
 
 import type { PropsWithChildren, ReactElement } from 'react';
 
-const animation = {
+const animation: Variants = {
   hide: { y: -16, opacity: 0 },
   show: {
     y: 0,

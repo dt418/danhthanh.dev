@@ -1,8 +1,7 @@
 import clsx from 'clsx';
+import { type PropsWithChildren, type ReactElement } from 'react';
 
 import { ErrorIcon, InfoIcon, NoteIcon, WarningIcon } from '@/components/Icons';
-
-import type { PropsWithChildren, ReactElement } from 'react';
 
 interface CalloutProps {
   variant?: 'neutral' | 'info' | 'warning' | 'danger';
@@ -13,6 +12,10 @@ function Callout({
   children = null,
 }: PropsWithChildren<CalloutProps>) {
   let data: {
+    title: string;
+    icon: ReactElement;
+    modifier: string;
+  } = {} as {
     title: string;
     icon: ReactElement;
     modifier: string;

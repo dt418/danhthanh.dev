@@ -1,10 +1,12 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 
 export default function useScrollSpy(): {
   currentVisibles: Record<string, boolean>;
   currentSection: string;
 } {
-  const [currentSection, setCurrentSection] = useState<string>(undefined);
+  const [currentSection, setCurrentSection] = useState<string>('');
   const [currentVisibles, setCurrentVisibles] = useState<
     Record<string, boolean>
   >({});

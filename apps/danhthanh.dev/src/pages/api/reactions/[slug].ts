@@ -22,7 +22,7 @@ export default async function handler(
       const contentTitle = z.string().parse(req.body.contentTitle);
       const type = z.nativeEnum(ReactionType).parse(req.body.type);
       const count = z.number().parse(req.body.count || 1);
-      const section = z.string().nullish().parse(req.body.section);
+      const section = z.string().nullish().parse(req.body.section) ?? '';
 
       // get current user reactions count
       const reactionsDetailUser = await getReactionsBy(slug, sessionId);

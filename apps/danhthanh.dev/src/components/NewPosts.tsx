@@ -1,12 +1,12 @@
 import clsx from 'clsx';
-import { m } from 'framer-motion';
+import { m, Variants } from 'motion/react';
 import Link from 'next/link';
 
 import useNewPosts from '@/hooks/useNewPosts';
 
 import { relativeTime } from '@/helpers/date';
 
-const animation = {
+const animation: Variants = {
   hide: { y: -32, opacity: 0 },
   show: {
     y: 0,
@@ -23,7 +23,7 @@ interface NewPostsProps {
 }
 
 function NewPosts({ onItemClick = () => {} }: NewPostsProps) {
-  const { data } = useNewPosts();
+  const { data = [] } = useNewPosts();
 
   if (data.length === 0) return null;
 

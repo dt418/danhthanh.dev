@@ -291,7 +291,7 @@ export const setReaction = async ({
   contentType,
   contentTitle,
   count,
-  section,
+  section = '',
   sessionId,
   type,
 }: {

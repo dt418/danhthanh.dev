@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import Link from 'next/link';
 
 import CountUp from '@/components/CountUp';

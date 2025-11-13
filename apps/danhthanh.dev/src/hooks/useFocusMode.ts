@@ -1,3 +1,5 @@
+'use client';
+
 import useLocalStorageState from 'use-local-storage-state';
 
 const LOCAL_STORAGE_KEY = 'ng-focus-mode';

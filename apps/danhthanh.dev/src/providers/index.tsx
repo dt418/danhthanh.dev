@@ -1,3 +1,5 @@
+'use client';
+
 import { MDXProvider } from '@mdx-js/react';
 import { ThemeProvider } from 'next-themes';
 

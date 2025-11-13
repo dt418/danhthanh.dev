@@ -1,8 +1,10 @@
+'use client';
+
 import {
   domAnimation,
   LazyMotion,
   MotionConfig as MotionProvider,
-} from 'framer-motion';
+} from 'motion/react';
 
 interface FramerMotionProviderProps {
   children: JSX.Element;

@@ -1,12 +1,12 @@
 import { Popover } from '@headlessui/react';
 import clsx from 'clsx';
-import { m } from 'framer-motion';
+import { m, Variants } from 'motion/react';
 
 import { InsightIcon } from '@/components/Icons';
 
 import { formatNumber } from '@/helpers/post';
 
-const animation = {
+const animation: Variants = {
   hide: { opacity: 0, y: 16 },
   show: { opacity: 1, y: 0, transition: { duration: 0.18 } },
 };

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { m } from 'framer-motion';
+import { m, Variants } from 'motion/react';
 import { Fragment } from 'react';
 
 import { KeyboardIcon } from '@/components/Icons';
@@ -27,7 +27,7 @@ const shortcuts: Array<{
   },
 ];
 
-const animation = {
+const animation: Variants = {
   hide: { x: -24, opacity: 0 },
   show: {
     x: 0,

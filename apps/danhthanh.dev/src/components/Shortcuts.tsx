@@ -15,7 +15,8 @@ const focusToast = {
 };
 
 function Shortcuts() {
-  const toastRef = useRef(null);
+  const toastIdRef = useRef<string | null>(null);
+
   const { theme, setTheme } = useTheme();
   const { isQuickAccessOpen, setQuickAccessOpen } = useGlobal();
   const { focusMode, setFocusMode } = useFocusMode();
@@ -33,26 +34,32 @@ function Shortcuts() {
   });
 
   useEffect(() => {
-    if (toastRef.current) {
-      toast.remove(toastRef.current.id);
+    // 1. Clean up any existing toast if its ID is stored
+    if (toastIdRef.current) {
+      toast.remove(toastIdRef.current);
     }
-    if (focusMode) {
-      toastRef.current = toast.custom((t) => (
+
+    // 2. Display the new toast and store its ID in the ref
+    const status = focusMode ? 'On' : 'Off';
+
+    toastIdRef.current = toast.custom(
+      (t) => (
         <Toast
-          title={focusToast.title.replace('{STATUS}', 'On')}
+          title={focusToast.title.replace('{STATUS}', status)}
           message={focusToast.message}
           t={t}
         />
-      ));
-    } else {
-      toastRef.current = toast.custom((t) => (
-        <Toast
-          title={focusToast.title.replace('{STATUS}', 'Off')}
-          message={focusToast.message}
-          t={t}
-        />
-      ));
-    }
+      ),
+      { duration: Infinity }
+    ); // Use a long duration or Infinity if it should persist
+
+    // 3. Clean up function: removes the toast when the component unmounts
+    return () => {
+      if (toastIdRef.current) {
+        toast.remove(toastIdRef.current);
+        toastIdRef.current = null; // Clear the ref after removal
+      }
+    };
   }, [focusMode]);
 
   return null;

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import { toast } from 'react-hot-toast';
 
 import { InfoIcon, XCircleIcon } from '@/components/Icons';

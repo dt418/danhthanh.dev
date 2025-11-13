@@ -1,6 +1,6 @@
 import { Menu } from '@headlessui/react';
 import clsx from 'clsx';
-import { m } from 'framer-motion';
+import { m, Variants } from 'motion/react';
 import Link from 'next/link';
 import { forwardRef } from 'react';
 
@@ -9,7 +9,7 @@ import { ChevronRightIcon } from '@/components/Icons';
 import type { HTMLAttributes, Ref } from 'react';
 import type { UrlObject } from 'url';
 
-const animation = {
+const animation: Variants = {
   hide: { opacity: 0, y: -16 },
   show: { opacity: 1, y: 0, transition: { duration: 0.18 } },
 };

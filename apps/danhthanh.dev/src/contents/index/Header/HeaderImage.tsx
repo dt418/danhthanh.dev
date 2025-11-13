@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { m, useAnimationControls } from 'framer-motion';
+import { m, useAnimationControls } from 'motion/react';
 import Image from 'next/image';
 
 import HeaderImageAnimation from './HeaderImageAnimation';

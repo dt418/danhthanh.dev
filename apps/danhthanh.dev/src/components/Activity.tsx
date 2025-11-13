@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { m } from 'framer-motion';
+import { m, Variants } from 'motion/react';
 import Link from 'next/link';
 
 import useContentActivity from '@/hooks/useContentActivity';
@@ -91,7 +91,7 @@ function ActivityItem({
   );
 }
 
-const animation = {
+const animation: Variants = {
   hide: { y: -48, opacity: 0 },
   show: {
     y: 0,

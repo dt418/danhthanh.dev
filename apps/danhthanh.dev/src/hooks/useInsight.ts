@@ -1,3 +1,5 @@
+'use client';
+
 import { ContentType, ReactionType, ShareType } from '@prisma/client';
 import merge from 'lodash/merge';
 import { useEffect, useRef } from 'react';
@@ -150,7 +152,7 @@ export default function useInsight({
         contentTitle,
         type,
         count: count.current[type],
-        section,
+        section: section || '',
       }).finally(() => {
         // reset the batch click count to zero for the next batch
         count.current[type] = 0;
