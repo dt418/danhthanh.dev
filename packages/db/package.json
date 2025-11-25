@@ -1,0 +1,42 @@
+{
+  "name": "@danhthanh/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./client": {
+      "import": "./dist/adapters/prisma/prisma.client.js",
+      "types": "./dist/adapters/prisma/prisma.client.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup --env.NODE_ENV production",
+    "dev": "tsup --watch",
+    "clean": "rimraf dist",
+    "db:generate": "prisma generate --schema=./prisma/schema.prisma",
+    "db:push": "prisma db push --schema=./prisma/schema.prisma",
+    "db:migrate": "prisma migrate --schema=./prisma/schema.prisma",
+    "db:studio": "prisma studio --schema=./prisma/schema.prisma",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.18.0",
+    "@prisma/extension-accelerate": "^2.0.2",
+    "dotenv": "^17.2.3"
+  },
+  "devDependencies": {
+    "eslint-config-typescript": "workspace:*",
+    "prisma": "^6.18.0",
+    "rimraf": "^5.0.5",
+    "tsconfig": "workspace:*",
+    "tsup": "^8.0.1",
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,28 +1,23 @@
 /* eslint-disable no-template-curly-in-string */
+import { getContainer, SERVICE_TOKENS } from '@danhthanh/db';
 import jsonata from 'jsonata';
 
 import dayjs from '@/utils/dayjs';
-import { prisma } from '@/utils/prisma';
 
 import type { TContentActivity, TContentMeta, TReaction } from '@/types';
-import type { ContentType, ReactionType, ShareType } from '@prisma/client';
+import type { ContentType, ReactionType, ShareType } from '@danhthanh/db';
+
+// Get repository instances from DI container
+const container = getContainer();
+const contentMetaRepo = container.resolve(SERVICE_TOKENS.ContentMetaRepository);
+const reactionRepo = container.resolve(SERVICE_TOKENS.ReactionRepository);
+const shareRepo = container.resolve(SERVICE_TOKENS.ShareRepository);
+const viewRepo = container.resolve(SERVICE_TOKENS.ViewRepository);
 
 export const getAllContentMeta = async (): Promise<
   Record<string, TContentMeta>
 > => {
-  const result = await prisma.contentMeta.findMany({
-    include: {
-      _count: {
-        select: {
-          shares: true,
-          views: true,
-        },
-      },
-    },
-    orderBy: {
-      createdAt: 'asc',
-    },
-  });
+  const result = await contentMetaRepo.findAllWithCounts();
 
   return result && result.length > 0
     ? result.reduce(
@@ -43,19 +38,7 @@ export const getAllContentMeta = async (): Promise<
 export const getContentMeta = async (
   slug: string
 ): Promise<{ shares: number; views: number }> => {
-  const result = await prisma.contentMeta.findFirst({
-    where: {
-      slug,
-    },
-    include: {
-      _count: {
-        select: {
-          shares: true,
-          views: true,
-        },
-      },
-    },
-  });
+  const result = await contentMetaRepo.findBySlugWithCounts(slug);
 
   return {
     shares: result?._count.shares || 0,
@@ -67,7 +50,7 @@ export const getContentActivity = async (): Promise<TContentActivity[]> => {
   // last 24 hours
   const date = dayjs().subtract(24, 'hours').toDate();
 
-  const result = await prisma.contentMeta.findMany({
+  const result = await contentMetaRepo.findManyWithRelations({
     include: {
       reactions: {
         select: {
@@ -149,41 +132,13 @@ export const getNewPosts = async (): Promise<
   // last 8 days
   const date = dayjs().subtract(8, 'days').toDate();
 
-  const result = await prisma.contentMeta.findMany({
-    where: {
-      type: 'POST',
-      AND: {
-        createdAt: {
-          gte: date,
-        },
-      },
-    },
-    select: {
-      slug: true,
-      title: true,
-      createdAt: true,
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-    take: 1,
-  });
+  const result = await contentMetaRepo.findNewPosts(date);
 
   return result;
 };
 
 export const getReactions = async (slug: string): Promise<TReaction> => {
-  const result = await prisma.reaction.groupBy({
-    by: ['type'],
-    _sum: {
-      count: true,
-    },
-    where: {
-      content: {
-        slug,
-      },
-    },
-  });
+  const result = await reactionRepo.groupByType(slug);
 
   const expression = `$merge([
     {
@@ -212,23 +167,7 @@ export const getSectionMeta = async (
     }
   >
 > => {
-  const result = await prisma.reaction.groupBy({
-    by: ['section', 'type'],
-    _sum: {
-      count: true,
-    },
-    where: {
-      section: {
-        not: null,
-      },
-      content: {
-        slug,
-      },
-    },
-    orderBy: {
-      section: 'asc',
-    },
-  });
+  const result = await reactionRepo.groupBySectionAndType(slug);
 
   const expression = `$\
     {
@@ -256,18 +195,7 @@ export const getReactionsBy = async (
   slug: string,
   sessionId: string
 ): Promise<TReaction> => {
-  const result = await prisma.reaction.groupBy({
-    by: ['type'],
-    _sum: {
-      count: true,
-    },
-    where: {
-      sessionId,
-      content: {
-        slug,
-      },
-    },
-  });
+  const result = await reactionRepo.groupByTypeForSession(slug, sessionId);
 
   const expression = `$merge([
     {
@@ -303,25 +231,14 @@ export const setReaction = async ({
   sessionId: string;
   type: ReactionType;
 }) => {
-  const result = await prisma.reaction.create({
-    data: {
-      count,
-      type,
-      section,
-      sessionId,
-      content: {
-        connectOrCreate: {
-          where: {
-            slug,
-          },
-          create: {
-            slug,
-            type: contentType,
-            title: contentTitle,
-          },
-        },
-      },
-    },
+  const result = await reactionRepo.create({
+    slug,
+    contentType,
+    contentTitle,
+    count,
+    section,
+    sessionId,
+    type,
   });
 
   return result;
@@ -331,14 +248,7 @@ export const getSharesBy = async (
   slug: string,
   sessionId: string
 ): Promise<number> => {
-  const result = await prisma.share.count({
-    where: {
-      sessionId,
-      content: {
-        slug,
-      },
-    },
-  });
+  const result = await shareRepo.countBySession(slug, sessionId);
 
   return result || 0;
 };
@@ -356,23 +266,12 @@ export const setShare = async ({
   type: ShareType;
   sessionId: string;
 }) => {
-  const result = await prisma.share.create({
-    data: {
-      type,
-      sessionId,
-      content: {
-        connectOrCreate: {
-          where: {
-            slug,
-          },
-          create: {
-            slug,
-            type: contentType,
-            title: contentTitle,
-          },
-        },
-      },
-    },
+  const result = await shareRepo.create({
+    slug,
+    contentType,
+    contentTitle,
+    type,
+    sessionId,
   });
 
   return result;
@@ -382,14 +281,7 @@ export const getViewsBy = async (
   slug: string,
   sessionId: string
 ): Promise<number> => {
-  const result = await prisma.view.count({
-    where: {
-      sessionId,
-      content: {
-        slug,
-      },
-    },
-  });
+  const result = await viewRepo.countBySession(slug, sessionId);
 
   return result || 0;
 };
@@ -405,22 +297,11 @@ export const setView = async ({
   contentTitle: string;
   sessionId: string;
 }) => {
-  const result = await prisma.view.create({
-    data: {
-      sessionId,
-      content: {
-        connectOrCreate: {
-          where: {
-            slug,
-          },
-          create: {
-            slug,
-            type: contentType,
-            title: contentTitle,
-          },
-        },
-      },
-    },
+  const result = await viewRepo.create({
+    slug,
+    contentType,
+    contentTitle,
+    sessionId,
   });
 
   return result;

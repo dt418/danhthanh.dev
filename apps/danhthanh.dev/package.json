@@ -11,13 +11,10 @@
     "lint:types": "tsc --noEmit",
     "lint:style": "prettier --check .",
     "analyze": "cross-env ANALYZE=true npm run build",
-    "postbuild": "next-sitemap",
-    "db:generate": "prisma generate --schema=./prisma/schema.prisma",
-    "db:push": "prisma db push --schema=./prisma/schema.prisma",
-    "db:migrate": "prisma migrate",
-    "db:studio": "prisma studio"
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
+    "@danhthanh/db": "workspace:*",
     "@headlessui/react": "^1.7.7",
     "@headlessui/tailwindcss": "^0.1.2",
     "@mdx-js/loader": "^2.2.1",
