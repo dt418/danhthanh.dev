@@ -16,7 +16,7 @@
     "editor.defaultFormatter": "Prisma.prisma"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "prisma.pinToPrisma6": true,
   "prisma.scriptRunner": "npx"
