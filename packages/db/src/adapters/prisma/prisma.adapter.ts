@@ -29,6 +29,7 @@ export class PrismaAdapter implements IDatabaseAdapter {
       await this.client.$connect();
       this.connected = true;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Failed to connect to database:', error);
       throw error;
     }
@@ -46,6 +47,7 @@ export class PrismaAdapter implements IDatabaseAdapter {
       await this.client.$disconnect();
       this.connected = false;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Failed to disconnect from database:', error);
       throw error;
     }

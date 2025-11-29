@@ -24,7 +24,7 @@ const ProjectFrontMatter = z.object({
   type: z.enum(['package']).default('package'),
 });
 
-const validate = (schema, data) => {
+const validate = (schema: any, data: any) => {
   try {
     return schema.parse(data);
   } catch (err) {
@@ -36,44 +36,45 @@ const validate = (schema, data) => {
   }
 };
 
-const withFrontMatter = () => (_tree, file) => {
-  const data = getFrontMatter(file.value);
+const withFrontMatter =
+  () => (_tree: any, file: { value: any; data: { [x: string]: any } }) => {
+    const data = getFrontMatter(file.value) as Record<string, unknown>;
 
-  // skip front matter validation
-  if (Object.keys(data).length === 0) return;
+    // skip front matter validation
+    if (Object.keys(data).length === 0) return;
 
-  const base = validate(BaseFrontMatter, data);
+    const base = validate(BaseFrontMatter, data);
 
-  let frontMatter;
+    let frontMatter;
 
-  switch (base.layout) {
-    /**
-     * Specific post frontMatter
-     */
-    case 'Post': {
-      const post = validate(PostFrontMatter, data);
-      frontMatter = { ...base, ...post };
-      break;
+    switch (base.layout) {
+      /**
+       * Specific post frontMatter
+       */
+      case 'Post': {
+        const post = validate(PostFrontMatter, data);
+        frontMatter = { ...base, ...post };
+        break;
+      }
+      /**
+       * Specific project frontMatter
+       */
+      case 'Project': {
+        const project = validate(ProjectFrontMatter, data);
+        frontMatter = { ...base, ...project };
+        break;
+      }
+      /**
+       * Default frontMatter
+       */
+      default: {
+        frontMatter = base;
+        break;
+      }
     }
-    /**
-     * Specific project frontMatter
-     */
-    case 'Project': {
-      const project = validate(ProjectFrontMatter, data);
-      frontMatter = { ...base, ...project };
-      break;
-    }
-    /**
-     * Default frontMatter
-     */
-    default: {
-      frontMatter = base;
-      break;
-    }
-  }
 
-  // eslint-disable-next-line no-param-reassign
-  file.data['front-matter'] = frontMatter;
-};
+    // eslint-disable-next-line no-param-reassign
+    file.data['front-matter'] = frontMatter;
+  };
 
 export default withFrontMatter;
