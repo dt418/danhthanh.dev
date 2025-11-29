@@ -31,13 +31,25 @@ export function initializeServices(): void {
   registerSingleton(SERVICE_TOKENS.DatabaseAdapter, () => new PrismaAdapter());
 
   // Register repositories
-  registerSingleton(SERVICE_TOKENS.ContentMetaRepository, (c) => new PrismaContentMetaRepository(getPrismaClient(c)));
+  registerSingleton(
+    SERVICE_TOKENS.ContentMetaRepository,
+    (c) => new PrismaContentMetaRepository(getPrismaClient(c))
+  );
 
-  registerSingleton(SERVICE_TOKENS.ReactionRepository, (c) => new PrismaReactionRepository(getPrismaClient(c)));
+  registerSingleton(
+    SERVICE_TOKENS.ReactionRepository,
+    (c) => new PrismaReactionRepository(getPrismaClient(c))
+  );
 
-  registerSingleton(SERVICE_TOKENS.ShareRepository, (c) => new PrismaShareRepository(getPrismaClient(c)));
+  registerSingleton(
+    SERVICE_TOKENS.ShareRepository,
+    (c) => new PrismaShareRepository(getPrismaClient(c))
+  );
 
-  registerSingleton(SERVICE_TOKENS.ViewRepository, (c) => new PrismaViewRepository(getPrismaClient(c)));
+  registerSingleton(
+    SERVICE_TOKENS.ViewRepository,
+    (c) => new PrismaViewRepository(getPrismaClient(c))
+  );
 }
 
 /**

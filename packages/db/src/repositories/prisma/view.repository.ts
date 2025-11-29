@@ -3,7 +3,7 @@
  */
 
 import type { IViewRepository } from '../interfaces/view.repository.interface';
-import type { ContentType,PrismaClient  } from '@prisma/client';
+import type { ContentType, PrismaClient } from '@prisma/client';
 
 export class PrismaViewRepository implements IViewRepository {
   constructor(private readonly prisma: PrismaClient) {}

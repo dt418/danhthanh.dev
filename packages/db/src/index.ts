@@ -22,14 +22,14 @@ export type {
 export { ServiceLifecycle } from './core/types';
 
 // Service configuration
-export { getContainer,initializeServices } from './services';
+export { getContainer, initializeServices } from './services';
 export { SERVICE_TOKENS } from './tokens';
 
 // Adapter exports
 export type { IDatabaseAdapter } from './adapters/interfaces/database.interface';
 export { PrismaAdapter } from './adapters/prisma/prisma.adapter';
 export type { PrismaClient } from './adapters/prisma/prisma.client';
-export { createPrismaClient,prisma } from './adapters/prisma/prisma.client';
+export { createPrismaClient, prisma } from './adapters/prisma/prisma.client';
 
 // Repository interfaces
 export type { IContentMetaRepository } from './repositories/interfaces/content-meta.repository.interface';

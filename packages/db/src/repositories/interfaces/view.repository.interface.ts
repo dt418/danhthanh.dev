@@ -2,7 +2,7 @@
  * View Repository Interface
  */
 
-import type { ContentType } from '@prisma/client';
+import type { ContentType, View } from '@prisma/client';
 
 export interface IViewRepository {
   /**
@@ -18,5 +18,5 @@ export interface IViewRepository {
     contentType: ContentType;
     contentTitle: string;
     sessionId: string;
-  }): Promise<any>;
+  }): Promise<View>;
 }

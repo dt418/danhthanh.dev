@@ -3,7 +3,7 @@
  */
 
 import type { IShareRepository } from '../interfaces/share.repository.interface';
-import type { ContentType, PrismaClient , ShareType } from '@prisma/client';
+import type { ContentType, PrismaClient, ShareType } from '@prisma/client';
 
 export class PrismaShareRepository implements IShareRepository {
   constructor(private readonly prisma: PrismaClient) {}

@@ -3,7 +3,7 @@
  */
 
 import type { IContentMetaRepository } from '../interfaces/content-meta.repository.interface';
-import type { PrismaClient } from '@prisma/client';
+import type { Prisma, PrismaClient } from '@prisma/client';
 
 export class PrismaContentMetaRepository implements IContentMetaRepository {
   constructor(private readonly prisma: PrismaClient) {}
@@ -41,9 +41,9 @@ export class PrismaContentMetaRepository implements IContentMetaRepository {
   }
 
   async findManyWithRelations(options: {
-    where?: any;
-    include?: any;
-    orderBy?: any;
+    where?: Prisma.ContentMetaWhereInput;
+    include?: Prisma.ContentMetaInclude;
+    orderBy?: Prisma.ContentMetaOrderByWithRelationInput;
     take?: number;
   }) {
     return this.prisma.contentMeta.findMany(options);

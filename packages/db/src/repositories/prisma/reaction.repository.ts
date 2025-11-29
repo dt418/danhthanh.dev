@@ -3,7 +3,7 @@
  */
 
 import type { IReactionRepository } from '../interfaces/reaction.repository.interface';
-import type { ContentType, PrismaClient , ReactionType } from '@prisma/client';
+import type { ContentType, PrismaClient, ReactionType } from '@prisma/client';
 
 export class PrismaReactionRepository implements IReactionRepository {
   constructor(private readonly prisma: PrismaClient) {}

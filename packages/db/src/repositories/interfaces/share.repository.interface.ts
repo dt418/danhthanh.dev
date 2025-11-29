@@ -2,7 +2,7 @@
  * Share Repository Interface
  */
 
-import type { ContentType, ShareType } from '@prisma/client';
+import type { ContentType, Share, ShareType } from '@prisma/client';
 
 export interface IShareRepository {
   /**
@@ -19,5 +19,5 @@ export interface IShareRepository {
     contentTitle: string;
     type: ShareType;
     sessionId: string;
-  }): Promise<any>;
+  }): Promise<Share>;
 }
